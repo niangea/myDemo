@@ -1,0 +1,114 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: myDemo-gateway
+  cloud:
+    nacos:
+      discovery:
+        ip: 192.168.206.242 # 显式指定，避免本地回环
+      config:
+        ip: 192.168.206.242
+    discovery:
+      locator:
+        lower-case-service-id: true
+        enabled: true
+    sentinel:
+      transport:
+        dashboard: 192.168.206.242:8000
+
+      datasource:
+        gateway-flow-rules:
+          nacos:
+            server-addr: 192.168.206.242:8848
+            dataId: myDemo-gateway-flow-rules
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: gw-flow
+        gateway-api-rules:
+          nacos:
+            server-addr: 192.168.206.242:8848
+            dataId: myDemo-gateway-api-rules
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: gw-api-group
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: myDemo-authcenter
+          uri: lb://myDemo-authcenter
+          predicates:
+            - Path=/oauth/**
+        - id: myDemo-member
+          uri: lb://myDemo-member
+          predicates:
+            - Path=/sso/**,/member/**
+        - id: myDemo-order-curr
+          uri: lb://myDemo-order-curr
+          predicates:
+            - Path=/order/**
+        - id: myDemo-cart
+          uri: lb://myDemo-cart
+          predicates:
+            - Path=/cart/**
+        - id: myDemo-product
+          uri: lb://myDemo-product
+          predicates:
+            - Path=/pms/**
+        - id: myDemo-coupons
+          uri: lb://myDemo-coupons
+          predicates:
+            - Path=/coupon/**
+        - id: myDemo-portal
+          uri: lb://myDemo-portal
+          predicates:
+            - Path=/home/**,/portal/**
+        - id: myDemoAdmin
+          uri: lb://myDemoAdmin
+          predicates:
+            - Path=/myDemoAdmin/**
+          filters:
+            # 关键配置：在转发前，去掉路径中的第一个前缀（即 /myDemoAdmin）
+            - StripPrefix=1
+
+
+management: #开启SpringBoot Admin的监控
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true  # 显式启用网关端点
+    routes:
+      enabled: true  # 启用路由端点
+    gateway-routes:
+      enabled: true
+    gateway-global-filters:
+      enabled: true
+    gateway-routefilters:
+      enabled: true
+logging:
+  level:
+    org.springframework.boot.actuate: debug
+    org.springframework.cloud.gateway: trace
+    org.springframework.web: debug
+
+
+tuling:
+  gateway:
+    shouldSkipUrls:
+       - /oauth/**
+       - /sso/**
+       - /home/**
+       - /portal/commentlist/**
+       - /order/paySuccess/**
+       - /pms/**
+       - /static/qrcode/**
+
+

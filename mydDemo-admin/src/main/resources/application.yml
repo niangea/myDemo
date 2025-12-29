@@ -1,0 +1,57 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: myDemoAdmin
+  # 关键修正：将druid和dynamic配置置于datasource下
+  datasource:
+    # 以下是Druid连接池的通用参数
+    druid:
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        login-username: druid
+        login-password: druid
+      validation-query: SELECT 1
+    # 以下是动态数据源（多数据源）配置
+    dynamic:
+      primary: user
+      strict: false
+      datasource:
+        user:
+          url: jdbc:mysql://192.168.206.242:3306/myDemo_user?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: lihenian
+          password: asdASD10086.
+        goods:
+          url: jdbc:mysql://192.168.206.242:3306/myDemo_goods?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: lihenian
+          password: asdASD10086.
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.206.242:8848
+        namespace: public
+        group: DEFAULT_GROUP
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+      - /admin/register
+      - /upload/product/**
+
+
