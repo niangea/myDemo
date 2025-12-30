@@ -6,28 +6,28 @@ spring:
   cloud:
     nacos:
       discovery:
-        ip: 192.168.206.242 # 显式指定，避免本地回环
+        ip: 192.168.206.243 # 显式指定，避免本地回环
       config:
-        ip: 192.168.206.242
+        ip: 192.168.206.243
     discovery:
       locator:
         lower-case-service-id: true
         enabled: true
     sentinel:
       transport:
-        dashboard: 192.168.206.242:8000
+        dashboard: 192.168.206.243:8000
 
       datasource:
         gateway-flow-rules:
           nacos:
-            server-addr: 192.168.206.242:8848
+            server-addr: 192.168.206.243:8848
             dataId: myDemo-gateway-flow-rules
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: gw-flow
         gateway-api-rules:
           nacos:
-            server-addr: 192.168.206.242:8848
+            server-addr: 192.168.206.243:8848
             dataId: myDemo-gateway-api-rules
             groupId: DEFAULT_GROUP
             data-type: json
@@ -66,10 +66,10 @@ spring:
           uri: lb://myDemo-portal
           predicates:
             - Path=/home/**,/portal/**
-        - id: myDemoAdmin
-          uri: lb://myDemoAdmin
+        - id: myDemo-admin
+          uri: lb://myDemo-admin
           predicates:
-            - Path=/myDemoAdmin/**
+            - Path=/myDemo-admin/**
           filters:
             # 关键配置：在转发前，去掉路径中的第一个前缀（即 /myDemoAdmin）
             - StripPrefix=1
@@ -110,5 +110,7 @@ tuling:
        - /order/paySuccess/**
        - /pms/**
        - /static/qrcode/**
+       - /myDemo-admin/admin/register
+       - /myDemo-admin/admin/login
 
 

@@ -1,7 +1,8 @@
 package com.nian.myDemoSecurity.component;
 
 import cn.hutool.json.JSONUtil;
-import com.tuling.tulingmall.common.api.CommonResult;
+
+import com.nian.mydemocommon.common.api.CommonResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 

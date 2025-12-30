@@ -1,6 +1,7 @@
 package com.nian.myddemoadmin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.nian.myDemoSecurity.util.JwtTokenUtil;
 import com.nian.myddemoadmin.bo.AdminUserDetails;
 import com.nian.myddemoadmin.dto.UmsAdminParam;
 import com.nian.myddemoadmin.mapper.UmsAdminMapper;
@@ -9,8 +10,7 @@ import com.nian.myddemoadmin.model.UmsAdmin;
 import com.nian.myddemoadmin.model.UmsPermission;
 import com.nian.myddemoadmin.model.UmsRole;
 import com.nian.myddemoadmin.service.UmsAdminService;
-import com.nian.myddemoadmin.util.JwtTokenUtil;
-import org.apache.naming.factory.BeanFactory;
+;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

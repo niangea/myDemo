@@ -1,19 +1,29 @@
 spring:
   application:
-    name: tulingmall-gateway
+    name: myDemo-admin
   cloud:
     nacos:
       config:
-        server-addr: 192.168.65.103:8848 #192.168.65.206:8848,192.168.65.209:8848,192.168.65.210:8848 #配置中心的地址
+        server-addr: 192.168.206.243:8848 #192.168.65.206:8848,192.168.65.209:8848,192.168.65.210:8848 #配置中心的地址
         file-extension: yml #配置文件结尾的配置
-        shared-configs[0]:
-          data-id: tulingmall-nacos.yml
-          group: DEFAULT_GROUP
-          refresh: true
-        shared-configs[1]:
-          data-id: tulingmall-db-common.yml
-          group: DEFAULT_GROUP
-          refresh: true
-  profiles:
-    active: dev
-
+        namespace: public
+        group: DEFAULT_GROUP
+      discovery:
+        # 重点检查此项：确保地址、端口无误，无多余空格
+        server-addr: 192.168.206.243:8848
+        # 如果使用了命名空间，请填写正确的命名空间ID（非名称）
+        namespace: public
+        # 分组，默认为 DEFAULT_GROUP，确保与其他服务一致
+        group: DEFAULT_GROUP
+#        shared-configs[0]:
+#          data-id: tulingmall-nacos.yml
+#          group: DEFAULT_GROUP
+#          refresh: true
+#        shared-configs[1]:
+#          data-id: tulingmall-db-common.yml
+#          group: DEFAULT_GROUP
+#          refresh: true
+#  profiles:
+#    active: dev
+#  config:
+#    import: optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
