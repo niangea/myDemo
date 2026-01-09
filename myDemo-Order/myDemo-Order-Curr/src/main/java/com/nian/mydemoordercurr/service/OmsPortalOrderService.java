@@ -3,6 +3,9 @@ package com.nian.mydemoordercurr.service;
 
 
 import com.nian.mydemocommon.common.api.CommonResult;
+import com.nian.mydemoordercurr.domain.MqCancelOrder;
+import com.nian.mydemoordercurr.domain.OmsOrderDetail;
+import com.nian.mydemoordercurr.domain.OrderParam;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
