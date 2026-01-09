@@ -15,6 +15,7 @@
 		<module>myDemo-authcenter</module>
 		<module>myDemo-security</module>
 		<module>myDemo-common</module>
+		<module>myDemo-Order</module>
 	</modules>
 	<url/>
 	<licenses>

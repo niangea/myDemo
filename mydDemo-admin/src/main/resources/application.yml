@@ -16,15 +16,16 @@ spring:
     # 以下是动态数据源（多数据源）配置
     dynamic:
       primary: user
+      # 未匹配到数据源时，true抛异常，false使用默认数据源
       strict: false
       datasource:
         user:
-          url: jdbc:mysql://192.168.206.243:3306/myDemo_user?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.206.247:3306/myDemo_User?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: lihenian
           password: asdASD10086.
         goods:
-          url: jdbc:mysql://192.168.206.243:3306/myDemo_goods?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.206.247:3306/myDemo_goods?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: lihenian
           password: asdASD10086.
@@ -32,7 +33,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.206.243:8848
+        server-addr: 192.168.206.247:8848
         namespace: public
         group: DEFAULT_GROUP
 jwt:
@@ -55,6 +56,7 @@ secure:
       - /actuator/**
       - /druid/**
       - /admin/login
+      - /admin/ssoLogin
       - /admin/register
       - /upload/product/**
 

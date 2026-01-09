@@ -5,6 +5,7 @@ import com.nian.myddemoadmin.dto.UmsAdminParam;
 import com.nian.myddemoadmin.model.UmsAdmin;
 import com.nian.myddemoadmin.model.UmsPermission;
 import com.nian.myddemoadmin.model.UmsRole;
+import com.nian.mydemocommon.common.api.TokenInfo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,8 @@ public interface UmsAdminService {
      * 根据用户名获取后台管理员
      */
     UmsAdmin getAdminByUsername(String username);
+
+
 
     /**
      * 注册功能
@@ -85,4 +88,6 @@ public interface UmsAdminService {
      * 获取用户信息
      */
     UserDetails loadUserByUsername(String username);
+
+    TokenInfo ssoLogin(String username, String password);
 }

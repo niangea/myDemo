@@ -9,7 +9,7 @@ public class ByEn {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // 要加密的密码
-        String rawPassword = "test";
+        String rawPassword = "test1234567";
 
         // 加密密码
         String encodedPassword = encoder.encode(rawPassword);

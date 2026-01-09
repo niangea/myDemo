@@ -6,28 +6,28 @@ spring:
   cloud:
     nacos:
       discovery:
-        ip: 192.168.206.243 # 显式指定，避免本地回环
+        ip: 192.168.206.247 # 显式指定，避免本地回环
       config:
-        ip: 192.168.206.243
+        ip: 192.168.206.247
     discovery:
       locator:
         lower-case-service-id: true
         enabled: true
     sentinel:
       transport:
-        dashboard: 192.168.206.243:8000
+        dashboard: 192.168.206.247:8000
 
       datasource:
         gateway-flow-rules:
           nacos:
-            server-addr: 192.168.206.243:8848
+            server-addr: 192.168.206.247:8848
             dataId: myDemo-gateway-flow-rules
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: gw-flow
         gateway-api-rules:
           nacos:
-            server-addr: 192.168.206.243:8848
+            server-addr: 192.168.206.247:8848
             dataId: myDemo-gateway-api-rules
             groupId: DEFAULT_GROUP
             data-type: json
@@ -112,5 +112,6 @@ tuling:
        - /static/qrcode/**
        - /myDemo-admin/admin/register
        - /myDemo-admin/admin/login
+       - /myDemo-admin/admin/ssoLogin
 
 
